@@ -1,8 +1,10 @@
 import React,{useReducer} from "react"
 
+import firebase from "../../firebase"
 import FirebaseReducer from "./firebaseReducer"
 import FirebaseContext from "./firebaseContext"
 
+//console.log(firebase)
 
 const FirebaseState = (props)=>{
 
@@ -19,7 +21,8 @@ const FirebaseState = (props)=>{
     return (
         <FirebaseContext.Provider
             value={{
-                menu: state.menu
+                menu: state.menu,
+                firebase
             }}
         >
             {props.children}

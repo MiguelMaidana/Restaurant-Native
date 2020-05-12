@@ -10,7 +10,7 @@ import FormularioPlatillo from "./views/FormularioPlatillo"
 import ResumenDePedido from "./views/ResumenDePedido"
 import ProgresoDePedido from "./views/ProgresoDePedido"
 
-// importar state de context 
+// importar State de context 
 
 import FirebaseState from "./context/firebase/firebaseState"
 
