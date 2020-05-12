@@ -4,6 +4,8 @@ import firebase from "../../firebase"
 import FirebaseReducer from "./firebaseReducer"
 import FirebaseContext from "./firebaseContext"
 
+import {OBTENER_PRODUCTOS} from "../../types/index"
+
 //console.log(firebase)
 
 const FirebaseState = (props)=>{
@@ -18,11 +20,21 @@ const FirebaseState = (props)=>{
 
         const [state,dispatch] = useReducer(FirebaseReducer,initialState)
 
+        // funcion que se ejecuta para traer los productos
+
+        const obtenerProductos=()=>{
+            dispatch({
+                type: OBTENER_PRODUCTOS,
+                payload
+            })
+        }
+
     return (
         <FirebaseContext.Provider
             value={{
                 menu: state.menu,
-                firebase
+                firebase,
+                obtenerProductos
             }}
         >
             {props.children}
