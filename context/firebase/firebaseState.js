@@ -6,6 +6,8 @@ import FirebaseContext from "./firebaseContext"
 
 import {OBTENER_PRODUCTOS_EXITO} from "../../types/index"
 
+import _ from "lodash"
+
 //console.log(firebase)
 
 const FirebaseState = (props)=>{
@@ -40,6 +42,12 @@ const FirebaseState = (props)=>{
                         ...doc.data()
                     }
                 })
+                // ordenar por categortia con lodash
+
+                platillos = _.sortBy(platillos,"categoria");
+                //console.group(platillos)
+
+
 
                 //console.log(platillos) Tenemos resultados de la base de datos
                 dispatch({
