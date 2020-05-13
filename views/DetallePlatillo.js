@@ -3,9 +3,9 @@ import {Text} from "react-native"
 
 const DetallePlatillo = () => {
     return (
-        <div>
+        <>
             <Text> Detalle Platillo</Text>
-        </div>
+        </>
     );
 };
 
