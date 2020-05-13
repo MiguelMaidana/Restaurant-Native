@@ -12,6 +12,8 @@ const Menu = () => {
     useEffect(()=>{
         obtenerProductos()
     },[])
+
+    
     return (
         <>
             <Text>Menu</Text>

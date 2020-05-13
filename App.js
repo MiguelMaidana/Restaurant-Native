@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import {decode,encode} from "base-64"
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -14,6 +16,9 @@ import ProgresoDePedido from "./views/ProgresoDePedido"
 
 import FirebaseState from "./context/firebase/firebaseState"
 import PedidoState from "./context/pedidos/pedidosState"
+
+if(!global.btoa) global.btoa = encode
+if(!global.atob) global.atob = decode
 
 
 const Stack = createStackNavigator();

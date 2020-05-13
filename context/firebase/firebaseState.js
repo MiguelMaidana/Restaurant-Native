@@ -6,7 +6,7 @@ import FirebaseContext from "./firebaseContext"
 
 import {OBTENER_PRODUCTOS} from "../../types/index"
 
-//console.log(firebase)
+console.log(firebase)
 
 const FirebaseState = (props)=>{
 
@@ -25,9 +25,34 @@ const FirebaseState = (props)=>{
         const obtenerProductos=()=>{
             dispatch({
                 type: OBTENER_PRODUCTOS,
-                payload
-            })
+                
+            });
+
+            //Consultar Firebase
+
+            firebase.db 
+                    .collection("productos")
+                    .where("existencia","==", true) // trae solo los que estan en existencia
+                    .onSnapshot(manejarSnapshot)
+
+           function manejarSnapshot(snapshot) {
+
+                let platillos = snapshot.docs.map(doc =>{
+                    return {
+                        id: doc.id,
+                        ...doc.data()
+                    }
+                })
+
+                console.log(platillos)
+
+           }
+
+           
+            
         }
+        
+    
 
     return (
         <FirebaseContext.Provider
