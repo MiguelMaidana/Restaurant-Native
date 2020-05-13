@@ -1,4 +1,4 @@
-import {SELECCIONAR_PRODUCTO} from "../../types/index"
+import {SELECCIONAR_PRODUCTO,CONFIRMAR_ORDENAR_PLATILLO} from "../../types/index"
 
 
 export default (state,action) =>{
@@ -7,6 +7,12 @@ export default (state,action) =>{
             return{
                 ...state,
                 platillo : action.payload
+
+            }
+        case CONFIRMAR_ORDENAR_PLATILLO :
+            return{
+                ...state,
+                pedido : [state.pedido,action.payload]
 
             }
         default:
