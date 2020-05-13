@@ -1,23 +1,58 @@
-import React, {useContext, useEffect} from 'react';
-import {Text} from "react-native"
+import React, {useContext, useEffect, Fragment} from 'react';
+import {StyleSheet} from "react-native"
 import FirebaseContext from "../context/firebase/firebaseContext"
+import {Container,Separator,Content,List,ListItem,Thumbnail,Text,Body} from "native-base"
+import globalStyles from "../styles/global"
 
 
 const Menu = () => {
 
     //Context de Firebase
 
-    const {obtenerProductos} = useContext(FirebaseContext)
+    const {menu, obtenerProductos} = useContext(FirebaseContext)
 
     useEffect(()=>{
         obtenerProductos()
+        //console.log(menu)
     },[])
 
     
     return (
-        <>
-            <Text>Menu</Text>
-        </>
+        <Container style={globalStyles.contenedor}>
+            <Content style={{backgroundColor:"#FFF"}}>
+            <List>
+                {menu.map(platillo =>{
+                    const {imagen,nombre,descripcion,categoria,id,precio } = platillo
+                         return (
+                            <Fragment key={id}>
+                                <ListItem
+                                
+                                >
+                                    <Thumbnail large square source={{uri:imagen}}
+
+                                    />
+                                    <Body>
+                                        <Text>{nombre}</Text>
+                                        <Text
+                                        
+                                            note
+                                            numberOfLines={2}
+                                        >
+                                            {descripcion}</Text>
+
+                                        <Text>Precio : ${precio}</Text>
+
+                                    </Body>
+
+                                </ListItem>
+
+                            </Fragment>
+
+                    )
+                })}
+            </List>
+            </Content>
+        </Container>
     );
 };
 

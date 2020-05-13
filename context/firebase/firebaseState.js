@@ -4,9 +4,9 @@ import firebase from "../../firebase"
 import FirebaseReducer from "./firebaseReducer"
 import FirebaseContext from "./firebaseContext"
 
-import {OBTENER_PRODUCTOS} from "../../types/index"
+import {OBTENER_PRODUCTOS_EXITO} from "../../types/index"
 
-console.log(firebase)
+//console.log(firebase)
 
 const FirebaseState = (props)=>{
 
@@ -23,10 +23,7 @@ const FirebaseState = (props)=>{
         // funcion que se ejecuta para traer los productos
 
         const obtenerProductos=()=>{
-            dispatch({
-                type: OBTENER_PRODUCTOS,
-                
-            });
+         
 
             //Consultar Firebase
 
@@ -44,7 +41,12 @@ const FirebaseState = (props)=>{
                     }
                 })
 
-                console.log(platillos)
+                //console.log(platillos) Tenemos resultados de la base de datos
+                dispatch({
+                    type: OBTENER_PRODUCTOS_EXITO,
+                    payload: platillos
+                    
+                });
 
            }
 
