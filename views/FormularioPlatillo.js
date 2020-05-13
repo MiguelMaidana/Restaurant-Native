@@ -3,9 +3,9 @@ import {Text} from "react-native"
 
 const FormularioPlatillo = () => {
     return (
-        <div>
+        <>
             <Text>Formulario Platillo</Text>
-        </div>
+        </>
     );
 };
 
