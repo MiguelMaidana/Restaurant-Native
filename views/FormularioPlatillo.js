@@ -1,11 +1,78 @@
-import React from 'react';
-import {Text} from "react-native"
+import React,{useState} from 'react';
+import {StyleSheet} from "react-native"
+import{Container,Content, Form,Icon,Input,Grid,Text,Col,Button} from "native-base"
+import {useNavigation} from "@react-navigation/native"
+import globalStyles from "../styles/global"
+
+import PedidoContext from "../context/pedidos/pedidosContext"
+
+
+
 
 const FormularioPlatillo = () => {
+
+
+    // state para cantidades
+    const[cantidad,guardarCantidad] = useState(1)
+
+    //decrementarUNO
+
+    const decrementarUno =()=>{
+        if(cantidad >1){
+            const nuevaCantidad = parseInt(cantidad) - 1 
+            guardarCantidad(nuevaCantidad)
+        }
+    }
+
+  
+    // se incremente en uno la cantidad 
+
+    const incrementarUno =()=>{
+        const nuevaCantidad = parseInt(cantidad) + 1 
+        guardarCantidad(nuevaCantidad)
+    }
+
     return (
-        <>
-            <Text>Formulario Platillo</Text>
-        </>
+        
+            <Container>
+                <Content>
+                    <Form>
+                        <Text style={globalStyles.titulo}>Cantidad</Text>
+                        <Grid>
+                            <Col>
+                                <Button
+                                    props
+                                    dark
+                                    style={{height:80, justifyContent:"center"}}
+                                    onPress={()=>decrementarUno()}
+                                >
+                                    <Icon style={{fontSize :40}} name="remove" />
+                                </Button>
+                            </Col>
+                            <Col>
+                                <Input
+                                    style={{textAlign:"center", fontSize:20}}
+                                    value={cantidad.toString()}
+                                    keyboardType="numeric"
+                                    onChangeText={cantidad=> guardarCantidad(cantidad)}
+                                />
+                            </Col>
+                            <Col>
+                                     <Button
+                                        props
+                                        dark
+                                        style={{height:80, justifyContent:"center"}}
+                                        onPress={()=>incrementarUno()}
+
+                                     >
+                                        <Icon style={{fontSize :40}} name="add" />
+                                    </Button>
+                            </Col>
+                        </Grid>
+                    </Form>
+                </Content>
+            </Container>
+        
     );
 };
 
