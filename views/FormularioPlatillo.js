@@ -21,12 +21,16 @@ const FormularioPlatillo = () => {
 
     //context
     const {platillo,guardarPedido} = useContext(PedidoContext)
-    //console.log(platillo)
+
+    //console.log("estoy en platillo en el state : " ,platillo)
+
     const {precio} =platillo
 
     // redireccionar 
 
     const navigation = useNavigation()
+
+
 
     // en cuanto el componente carga, calcular la cantidad a pagar
 
@@ -77,7 +81,9 @@ const FormularioPlatillo = () => {
                             total
                         }
 
-                        //console.log(pedido)
+                        //console.log(pedido.id)
+                        // console.log("viendo que llega a mi state en pedidos",pedido)
+                        // console.log(pedido.id)
                         guardarPedido(pedido)
 
                         // navegar hacia el Resumen
