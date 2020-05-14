@@ -13,7 +13,7 @@ const ResumenDePedido = props => {
 
 
     //context de pedido 
-     const {pedido,total,mostrarResumen} = useContext(PedidoContext)
+     const {pedido,total,mostrarResumen,eliminarProducto} = useContext(PedidoContext)
     
      useEffect(()=>{
         calcularTotal()
@@ -49,6 +49,30 @@ const ResumenDePedido = props => {
 
         )
      }
+     // elimina un producto del arreglo del pedido 
+
+     const confirmarEliminacion = (id)=>{
+        Alert.alert (
+            "Deseas eliminar este Articulo ",
+            "Una vez eliminado no se puede recuperar",
+            [
+                {
+                    text:"Confirmar",
+                    onPress:()=>{
+
+                        // eliminar del state 
+
+                        eliminarProducto(id)
+
+                    }
+                },
+                {
+                    text:"Cancelar", style:"cancel"
+                }
+            ]
+
+        )
+     }
    
 
     return (
@@ -72,6 +96,15 @@ const ResumenDePedido = props => {
                                             <Text>{nombre}</Text>
                                             <Text>Cantidad : {cantidad}</Text>
                                             <Text>precio : ${precio}</Text>
+
+                                            <Button
+                                                full
+                                                danger
+                                                style={{marginTop:20}}
+                                                onPress={()=>confirmarEliminacion(id)}
+                                            >
+                                                <Text style={[globalStyles.botonTexto,{color:"white"}]}>Eliminar</Text>
+                                            </Button>
                                         </Body>
                                     </ListItem>
 
