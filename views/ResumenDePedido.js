@@ -9,7 +9,7 @@ import PedidoContext from "../context/pedidos/pedidosContext"
 
 const ResumenDePedido = props => {
 
-
+    const navigation = useNavigation()
 
 
     //context de pedido 
@@ -28,8 +28,28 @@ const ResumenDePedido = props => {
         mostrarResumen(nuevoTotal)
 
      }
-   // console.log(pedido)
-    //console.log(pedido.nombre)
+
+     //  redirecciona  a progreso pedido
+
+     const progresoPedido=()=>{
+        Alert.alert (
+            "Revisa tu pedido",
+            "Una vez que Realizas tu pedido NO podras cambiarlo",
+            [
+                {
+                    text:"Confirmar",
+                    onPress:()=>{
+                        navigation.navigate("ProgresoDePedido")
+                    }
+                },
+                {
+                    text:"Revisar", style:"cancel"
+                }
+            ]
+
+        )
+     }
+   
 
     return (
         <Container style={globalStyles.contenedor}>
@@ -61,7 +81,28 @@ const ResumenDePedido = props => {
                 })}
 
                 <Text style={globalStyles.cantidad}>Total a pagar : ${total}</Text>
+
+                <Button
+                    style={{marginTop:30}}
+                    onPress={()=> navigation.navigate("Menu")}
+                    full
+                    dark
+                >
+                    <Text style={[globalStyles.botonTexto,{color:"white"}]}>Seguir Ordenando</Text>
+                </Button>
             </Content>
+
+            <Footer>
+                <FooterTab>
+                <Button
+                    style={globalStyles.boton}
+                    onPress={()=> progresoPedido()}
+                    
+                >
+                    <Text style={globalStyles.botonTexto}>Ordenar Pedido</Text>
+                </Button>
+                </FooterTab>
+            </Footer>
         </Container>
     );
 };

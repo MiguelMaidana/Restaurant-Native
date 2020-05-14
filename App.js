@@ -12,6 +12,10 @@ import FormularioPlatillo from "./views/FormularioPlatillo"
 import ResumenDePedido from "./views/ResumenDePedido"
 import ProgresoDePedido from "./views/ProgresoDePedido"
 
+// componentes
+
+import BotonResumen from "./components/ui/BotonResumen"
+
 // importar State de context 
 
 import FirebaseState from "./context/firebase/firebaseState"
@@ -40,7 +44,7 @@ function App() {
                 }}
                 >
                       <Stack.Screen name="NuevaOrden" component={NuevaOrden} options={{title:"Nueva Orden"}} />
-                      <Stack.Screen name="Menu" component={Menu} options={{title:"Nuestro Menu"}} />
+                      <Stack.Screen name="Menu" component={Menu} options={{title:"Menu",headerRight : props => <BotonResumen/>}} />
                       <Stack.Screen name="DetallePlatillo" component={DetallePlatillo} options={{title:"Detalle Platillo"}} />
                       <Stack.Screen name="FormularioPlatillo" component={FormularioPlatillo} options={{title:"Ordenar Platillo"}} />
                       <Stack.Screen name="ResumenDePedido" component={ResumenDePedido} options={{title:"Resumen Pedido"}} />
