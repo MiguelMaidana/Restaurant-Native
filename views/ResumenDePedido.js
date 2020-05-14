@@ -14,7 +14,7 @@ const ResumenDePedido = props => {
 
 
     //context de pedido 
-     const {pedido,total,mostrarResumen,eliminarProducto} = useContext(PedidoContext)
+     const {pedido,total,mostrarResumen,eliminarProducto,pedidoRealizado} = useContext(PedidoContext)
     
      useEffect(()=>{
         calcularTotal()
@@ -50,16 +50,19 @@ const ResumenDePedido = props => {
                             creado: Date.now()
                         }
 
-                        //console.log(pedidoObj)
+                        
+                        // escribir el pedido en Firebase
+
                         try{
                             const pedido = await firebase.db.collection("ordenes").add(pedidoObj)
-                            console.log(pedido.id)
+                            pedidoRealizado(pedido.id)
+
+                            // redireccionar a progreso
+                            navigation.navigate("ProgresoDePedido")
                         }catch(error){
                             console.log(error)
                         }
-
-                        // escribir el pedido en Firebase
-                        navigation.navigate("ProgresoDePedido")
+                      
                     }
                 },
                 {

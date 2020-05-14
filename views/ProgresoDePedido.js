@@ -9,11 +9,11 @@ import PedidoContext from "../context/pedidos/pedidosContext"
 
 const ProgresoDePedido = props => {
 
-    const {} = useContext(PedidoContext)
+    const {idpedido} = useContext(PedidoContext)
 
     return (
         
-            <Text>Desde progreso</Text>
+            <Text>{idpedido}</Text>
         
     );
 };

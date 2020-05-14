@@ -4,7 +4,7 @@ import PedidoReducer from "./pedidosReducer"
 import PedidoContext from "./pedidosContext"
 
 import {SELECCIONAR_PRODUCTO} from "../../types/index"
-import {CONFIRMAR_ORDENAR_PLATILLO,MOSTRAR_RESUMEN,ELIMINAR_PRODUCTO} from "../../types/index"
+import {CONFIRMAR_ORDENAR_PLATILLO,MOSTRAR_RESUMEN,ELIMINAR_PRODUCTO,PEDIDO_ORDENADO} from "../../types/index"
 
 
 const PedidoState = props =>{
@@ -14,6 +14,7 @@ const PedidoState = props =>{
         pedido :[],
         platillo : null,
         total : 0,
+        idpedido :""
     }
 
 const [state, dispatch] = useReducer(PedidoReducer,initialState)
@@ -64,16 +65,26 @@ const eliminarProducto =(id)=>{
     })
 }
 
+
+const pedidoRealizado = (id) =>{
+    dispatch({
+        type:PEDIDO_ORDENADO,
+        payload:id
+    })
+}
+
 return (
     <PedidoContext.Provider
         value={{
             pedido:state.pedido,
             platillo:state.platillo,
             total : state.total,
+            idpedido : state.idpedido,
             seleccionarPlatillo,
             guardarPedido,
             mostrarResumen,
-            eliminarProducto
+            eliminarProducto,
+            pedidoRealizado
     }}
         
     >
