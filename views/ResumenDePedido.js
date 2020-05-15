@@ -43,7 +43,7 @@ const ResumenDePedido = props => {
                         // crear un objeto para enviar a firebase
 
                         const pedidoObj ={
-                            timepoentrega:0,
+                            tiempoentrega:0,
                             completado: false,
                             total : Number(total),
                             orden : pedido, // array

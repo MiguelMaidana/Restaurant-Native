@@ -5,15 +5,32 @@ import globalStyles from "../styles/global"
 import {useNavigation} from "@react-navigation/native"
 
 import PedidoContext from "../context/pedidos/pedidosContext"
+import firebase from "../firebase/index"
 
 
-const ProgresoDePedido = props => {
+const ProgresoDePedido = () => {
 
     const {idpedido} = useContext(PedidoContext)
+    const [tiempo,guardarTiempo] = useState(0)
 
+    useEffect(()=>{
+        const obtenerPoducto = () =>{
+
+            firebase.db.collection("ordenes")
+                                    .doc(idpedido)
+                                    .onSnapshot(function(doc){
+                                        guardarTiempo(doc.data().tiempoentrega)
+                                    })
+        }
+           
+
+        obtenerPoducto()
+    },[])
+
+    
     return (
         
-            <Text>{idpedido}</Text>
+            <Text>{tiempo}</Text>
         
     );
 };
